@@ -24,10 +24,12 @@ function FavoritesPage() {
           <div className="bg-base-100 p-8 rounded-full">
             <HeartIcon className="size-16 text-base-content/30" />
           </div>
-          <h2 className="text-2xl font-bold">No favorites yet</h2>
-          <p className="text-base-content/70">Add products to your favorites</p>
+          <h2 className="text-2xl font-bold">Таңдаулы тауарлар жоқ</h2>
+          <p className="text-base-content/70">
+            Өзіңізге ұнаған тауарларды таңдаулыға қосыңыз
+          </p>
           <Link to="/" className="btn btn-primary">
-            Browse Products
+            Тауарларды қарау
           </Link>
         </div>
       </div>
@@ -38,11 +40,16 @@ function FavoritesPage() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-8 flex items-center gap-2">
         <HeartIcon className="size-8 text-error" />
-        Favorites ({products.length})
+        Таңдаулылар ({products.length})
       </h1>
+
       <div className="flex flex-wrap gap-10">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} showEditDelete={false} />
+          <ProductCard
+            key={product.id}
+            product={product}
+            showEditDelete={false}
+          />
         ))}
       </div>
     </div>

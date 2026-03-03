@@ -14,7 +14,7 @@ function LoginPage() {
     e.preventDefault();
     const result = await login(email, password);
     if (result.success) {
-      toast.success("Welcome back!");
+      toast.success("Қайта келгеніңізге қуаныштымыз!");
       navigate("/");
     }
   };
@@ -25,23 +25,26 @@ function LoginPage() {
         <div className="card-body">
           <h2 className="card-title text-2xl justify-center mb-4">
             <LogInIcon className="size-8" />
-            Sign In
+            Жүйеге кіру
           </h2>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && <div className="alert alert-error">{error}</div>}
+
             <div className="form-control">
-              <label className="label">Email</label>
+              <label className="label">Электрондық пошта</label>
               <input
                 type="email"
                 className="input input-bordered"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder=" your@email.com"
+                placeholder="example@email.com"
               />
             </div>
+
             <div className="form-control">
-              <label className="label">Password</label>
+              <label className="label">Құпия сөз</label>
               <input
                 type="password"
                 className="input input-bordered"
@@ -51,6 +54,7 @@ function LoginPage() {
                 placeholder="••••••••"
               />
             </div>
+
             <div className="card-actions flex-col mt-6">
               <button
                 type="submit"
@@ -60,17 +64,19 @@ function LoginPage() {
                 {loading ? (
                   <span className="loading loading-spinner" />
                 ) : (
-                  "Sign In"
+                  "Кіру"
                 )}
               </button>
+
               <p className="text-center text-sm mt-2">
-                Don&apos;t have an account?{" "}
+                Аккаунтыңыз жоқ па?{" "}
                 <Link to="/register" className="link link-primary">
-                  Register
+                  Тіркелу
                 </Link>
               </p>
             </div>
           </form>
+
         </div>
       </div>
     </div>

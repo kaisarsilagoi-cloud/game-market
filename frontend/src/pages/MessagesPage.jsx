@@ -26,7 +26,7 @@ function MessagesPage() {
         setSelectedPartner({ id: res.data.data.id, email: res.data.data.email });
         fetchMessages(toUserId);
       }).catch(() => {
-        setSelectedPartner({ id: parseInt(toUserId), email: "User" });
+        setSelectedPartner({ id: parseInt(toUserId), email: "Қолданушы" });
         fetchMessages(toUserId);
       });
     }
@@ -52,7 +52,7 @@ function MessagesPage() {
   if (!user) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-16 text-center">
-        <p>Please sign in to view messages</p>
+        <p>Хабарламаларды көру үшін жүйеге кіріңіз</p>
       </div>
     );
   }
@@ -61,15 +61,17 @@ function MessagesPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <MessageCircleIcon className="size-8" />
-        Messages
+        Хабарламалар
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-base-100 rounded-lg shadow overflow-hidden">
-          <div className="p-3 border-b font-semibold">Conversations</div>
+          <div className="p-3 border-b font-semibold">Сөйлесулер</div>
           <div className="max-h-96 overflow-y-auto">
             {conversations.length === 0 ? (
-              <div className="p-4 text-sm text-base-content/70">No conversations</div>
+              <div className="p-4 text-sm text-base-content/70">
+                Сөйлесулер жоқ
+              </div>
             ) : (
               conversations.map((conv) => (
                 <button
@@ -118,7 +120,7 @@ function MessagesPage() {
                 <input
                   type="text"
                   className="input input-bordered flex-1"
-                  placeholder="Type a message..."
+                  placeholder="Хабарлама жазыңыз..."
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSend()}
@@ -134,7 +136,7 @@ function MessagesPage() {
             </>
           ) : (
             <div className="flex-1 flex items-center justify-center text-base-content/60">
-              Select a conversation or start a new chat from a seller&apos;s profile
+              Сөйлесуді таңдаңыз немесе сатушының профилінен жаңа чат бастаңыз
             </div>
           )}
         </div>

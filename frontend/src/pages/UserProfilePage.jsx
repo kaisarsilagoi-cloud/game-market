@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProductStore } from "../store/useProductStore";
 import { useAuthStore } from "../store/useAuthStore";
-import { useMessageStore } from "../store/useMessageStore";
 import ProductCard from "../components/ProductCard";
 import { UserIcon, MessageCircleIcon, ArrowLeftIcon } from "lucide-react";
 import axios from "axios";
@@ -43,7 +42,7 @@ function UserProfilePage() {
     <div className="max-w-6xl mx-auto px-4 py-8">
       <button onClick={() => navigate(-1)} className="btn btn-ghost mb-4">
         <ArrowLeftIcon className="size-5" />
-        Back
+        Артқа
       </button>
 
       <div className="card bg-base-100 shadow-xl p-6 mb-8">
@@ -57,26 +56,28 @@ function UserProfilePage() {
             <div>
               <h1 className="text-2xl font-bold">{email}</h1>
               <p className="text-base-content/70">
-                {products?.length || 0} products
+                {products?.length || 0} өнім
               </p>
             </div>
           </div>
+
           {isAuthenticated() && !isOwnProfile && (
             <button
               onClick={() => navigate(`/messages?to=${id}`)}
               className="btn btn-primary gap-2"
             >
               <MessageCircleIcon className="size-5" />
-              Message
+              Хабарлама жазу
             </button>
           )}
         </div>
       </div>
 
-      <h2 className="text-xl font-bold mb-4">Products</h2>
+      <h2 className="text-xl font-bold mb-4">Өнімдер</h2>
+
       {products?.length === 0 ? (
         <div className="text-center py-12 text-base-content/70">
-          No products yet
+          Әзірге өнімдер жоқ
         </div>
       ) : (
         <div className="flex flex-wrap gap-10">

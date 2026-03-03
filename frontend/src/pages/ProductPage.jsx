@@ -21,6 +21,7 @@ function ProductPage() {
 
   const { id } = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
     fetchProduct(id);
   }, [fetchProduct, id]);
@@ -32,7 +33,7 @@ function ProductPage() {
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <button onClick={() => navigate(-1)} className="btn btn-ghost mb-8">
         <ArrowLeftIcon />
-        Back to Products
+        Өнімдерге оралу
       </button>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -59,8 +60,9 @@ function ProductPage() {
                   className="btn btn-primary gap-2"
                 >
                   <ShoppingCartIcon className="size-5" />
-                  Add to Cart
+                  Себетке қосу
                 </button>
+
                 <button
                   onClick={() =>
                     isInFavorites(product.id)
@@ -74,17 +76,22 @@ function ProductPage() {
                   }`}
                 >
                   <HeartIcon
-                    className={`size-5 ${isInFavorites(product.id) ? "fill-current" : ""}`}
+                    className={`size-5 ${
+                      isInFavorites(product.id) ? "fill-current" : ""
+                    }`}
                   />
-                  {isInFavorites(product.id) ? "In Favorites" : "Add to Favorites"}
+                  {isInFavorites(product.id)
+                    ? "Таңдаулыларда"
+                    : "Таңдаулыларға қосу"}
                 </button>
+
                 {isAuthenticated() && author && !isAuthor && (
                   <Link
                     to={`/messages?to=${author.id}`}
                     className="btn btn-outline gap-2"
                   >
                     <MessageCircleIcon className="size-5" />
-                    Message seller
+                    Сатушыға хабар жазу
                   </Link>
                 )}
               </div>
@@ -94,7 +101,8 @@ function ProductPage() {
 
         {isAuthor ? (
           <div className="card bg-base-100 rounded-lg p-8">
-            <h1 className="text-2xl mb-10">Edit Product</h1>
+            <h1 className="text-2xl mb-10">Өнімді өңдеу</h1>
+
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -102,7 +110,7 @@ function ProductPage() {
               }}
               className="flex flex-col gap-5"
             >
-              <label htmlFor="name">Product Name</label>
+              <label htmlFor="name">Өнім атауы</label>
               <input
                 id="name"
                 type="text"
@@ -113,7 +121,7 @@ function ProductPage() {
                 }
               />
 
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Бағасы</label>
               <input
                 id="price"
                 type="number"
@@ -124,19 +132,19 @@ function ProductPage() {
                 }
               />
 
-              <label htmlFor="img">Image URL</label>
+              <label htmlFor="img">Сурет сілтемесі (URL)</label>
               <input
                 id="img"
                 type="text"
                 className="input"
                 value={formData.img}
-                placeholder="url"
+                placeholder="сілтеме"
                 onChange={(e) =>
                   setFormData({ ...formData, img: e.target.value })
                 }
               />
 
-              <label htmlFor="category">Category</label>
+              <label htmlFor="category">Санат</label>
               <select
                 id="category"
                 className="select select-bordered"
@@ -145,11 +153,11 @@ function ProductPage() {
                   setFormData({ ...formData, category: e.target.value })
                 }
               >
-                <option value="">None</option>
-                <option value="game">Game</option>
-                <option value="accessory">Accessory</option>
-                <option value="collectible">Collectible</option>
-                <option value="other">Other</option>
+                <option value="">Жоқ</option>
+                <option value="game">Ойын</option>
+                <option value="accessory">Аксессуар</option>
+                <option value="collectible">Коллекциялық зат</option>
+                <option value="other">Басқа</option>
               </select>
 
               <div className="flex justify-between">
@@ -158,8 +166,9 @@ function ProductPage() {
                   className="btn btn-success"
                   disabled={!formData.name || !formData.price}
                 >
-                  Save changes
+                  Өзгерістерді сақтау
                 </button>
+
                 <button
                   type="button"
                   className="btn bg-red-500 text-white hover:bg-red-400"
@@ -168,7 +177,7 @@ function ProductPage() {
                     deleteProduct(id);
                   }}
                 >
-                  Delete
+                  Жою
                 </button>
               </div>
             </form>
@@ -176,11 +185,15 @@ function ProductPage() {
         ) : (
           <div className="card bg-base-100 rounded-lg p-8">
             <h1 className="text-2xl font-bold">{product?.name}</h1>
+
             <p className="text-3xl font-bold text-primary mt-2">
               ${Number(product?.price).toFixed(2)}
             </p>
+
             {product?.category && (
-              <span className="badge badge-primary mt-2">{product.category}</span>
+              <span className="badge badge-primary mt-2">
+                {product.category}
+              </span>
             )}
           </div>
         )}

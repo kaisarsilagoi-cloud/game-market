@@ -13,17 +13,21 @@ function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error("Құпиясөздер сәйкес емес");
       return;
     }
+
     if (password.length < 6) {
-      toast.error("Password must be at least 6 characters");
+      toast.error("Құпиясөз кемінде 6 таңбадан тұруы керек");
       return;
     }
+
     const result = await register(email, password);
+
     if (result.success) {
-      toast.success("Account created!");
+      toast.success("Тіркелу сәтті аяқталды!");
       navigate("/");
     }
   };
@@ -34,23 +38,26 @@ function RegisterPage() {
         <div className="card-body">
           <h2 className="card-title text-2xl justify-center mb-4">
             <UserPlusIcon className="size-8" />
-            Create Account
+            Аккаунт ашу
           </h2>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && <div className="alert alert-error">{error}</div>}
+
             <div className="form-control">
-              <label className="label">Email</label>
+              <label className="label">Электрондық пошта</label>
               <input
                 type="email"
                 className="input input-bordered"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder=" your@email.com"
+                placeholder="your@email.com"
               />
             </div>
+
             <div className="form-control">
-              <label className="label">Password</label>
+              <label className="label">Құпиясөз</label>
               <input
                 type="password"
                 className="input input-bordered"
@@ -61,8 +68,9 @@ function RegisterPage() {
                 placeholder="••••••••"
               />
             </div>
+
             <div className="form-control">
-              <label className="label">Confirm Password</label>
+              <label className="label">Құпиясөзді растау</label>
               <input
                 type="password"
                 className="input input-bordered"
@@ -72,6 +80,7 @@ function RegisterPage() {
                 placeholder="••••••••"
               />
             </div>
+
             <div className="card-actions flex-col mt-6">
               <button
                 type="submit"
@@ -81,13 +90,14 @@ function RegisterPage() {
                 {loading ? (
                   <span className="loading loading-spinner" />
                 ) : (
-                  "Create Account"
+                  "Аккаунт ашу"
                 )}
               </button>
+
               <p className="text-center text-sm mt-2">
-                Already have an account?{" "}
+                Аккаунтыңыз бар ма?{" "}
                 <Link to="/login" className="link link-primary">
-                  Sign In
+                  Жүйеге кіру
                 </Link>
               </p>
             </div>
