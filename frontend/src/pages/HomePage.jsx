@@ -23,7 +23,7 @@ function HomePage() {
             className="flex gap-2 cursor-pointer text-black bg-primary rounded-2xl px-6 py-4"
           >
             <PlusCircleIcon />
-            Add product
+            Тауар қосу
           </div>
         )}
         <div className="flex items-center gap-2 ml-auto">
@@ -43,13 +43,16 @@ function HomePage() {
             <PackageIcon className="size-10" />
           </div>
           <div className="text-center">
-            <h1 className="font-bold text-2xl text-primary">No products found</h1>
+            <h1 className="font-bold text-2xl text-primary">
+              Тауарлар табылмады
+            </h1>
             <p className="w-100 mt-2 text-gray-500">
-              Get started by adding your first product to the inventory
+              Алғашқы тауарыңызды қосу арқылы жұмысты бастаңыз
             </p>
           </div>
         </div>
       )}
+
       {loading ? (
         <div className="flex justify-center items-center h-50">
           <div className="loading loading-lg loading-ball" />
